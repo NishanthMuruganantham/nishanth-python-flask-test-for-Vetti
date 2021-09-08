@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block title %}
+    {{page_title}} contents
+{% endblock %}
+{% block content %}
+    <div class="row mt-5">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10">
+            
+            {% if table %}
+                <div class="row mt-2 mb-4">
+                    <ul>
+                        <li>
+                            This file &nbsp; <b>{{page_title}},</b>&nbsp; contains &nbsp; <b>{{total_lines}}</b>&nbsp; lines starting from 0 to {{note_file_content_end_line}}.
+                        </li>
+                        <li>
+                            {% if displaying_start_line and displaying_end_line %}
+                                Now displaying lines from {{displaying_start_line}} to {{displaying_end_line}}
+                            {% else %}
+                                Now displaying lines from 0 to {{total_lines}}
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Line No</th>
+                            <th scope="col">Content</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for lineno in note_file_content %}
+                            <tr>
+                                <th scope="row">{{lineno}}</th>
+                                <td>{{note_file_content[lineno]}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="row mt-2 mb-4">
+                    This file &nbsp; <b>{{page_title}},</b>&nbsp; contains &nbsp; <b>Markdown Texts</b>.
+                </div>
+                <div class="container mb-3" style="background-color:bisque;padding: 70px">
+                    {{note_file_content|safe }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+    {% endblock %}

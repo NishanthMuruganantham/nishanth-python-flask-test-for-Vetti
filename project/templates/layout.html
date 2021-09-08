@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!-- Bootstrap JS-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+</head>
+<style>
+    body{
+        padding-top: 70px;
+        background-image: url('https://images.unsplash.com/photo-1508739773434-c26b3d09e071?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+</style>
+
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark ">
+        <a class="navbar-brand" href="{{url_for('index')}}">DisplayFileContent</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item {{'active' if request.path == '/file1' or request.path=='/' else ''}}">
+                <a class="nav-link" href="{{url_for('index')}}">File1<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item {{'active' if request.path == '/file2' else ''}}">
+                <a class="nav-link" href="{{url_for('index',filename='file2')}}">File2 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item {{'active' if request.path == '/file3' else ''}}">
+                <a class="nav-link" href="{{url_for('index',filename='file3')}}">File3 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item {{'active' if request.path == '/file4' else ''}}">
+                <a class="nav-link" href="{{url_for('index',filename='file4')}}">File4 <span class="sr-only">(current)</span></a>
+            </li>
+            </ul>
+            <li class="nav-item">
+                <div class="nav-link" style="color:aliceblue">Filter : </div>
+            </li>
+            <form class="form-inline my-2 my-lg-0">
+                <input style="width: 130px;" class="form-control mr-sm-2" type="search" name="start-line" placeholder="Start Line no" aria-label="Search">
+                <input style="width: 130px;" class="form-control mr-sm-2" type="search" name="end-line" placeholder="End Line no" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter</button>
+            </form>
+        </div>
+    </nav>
+    {% block content %}
+    <!-- CONTENTS GOES HERE -->
+    {% endblock %}
+</body>
+</html>
