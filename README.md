@@ -1,4 +1,7 @@
 # python-flask-test
+<p>
+<i>This Flask app has been developed based on the requirements provided in task.pdf</i>
+</p>
 <p>This app will display the contents present in the requested file. By default, this will display File-1 contents as Homepage.</p>
 
 LOCAL HOST URL : http://127.0.0.1:5000/
@@ -17,6 +20,15 @@ Below are the requests available from this App.
 | 3     | File 3 Contents   | /file3        |
 | 4     | File 4 Contents   | /file4        |
 
+
+<br>
+<h4>Example :-</h4>
+<br>
+
+```
+http://127.0.0.1:5000/file3
+```
+
 <hr>
 
 <h2>Query Names</h2>
@@ -28,6 +40,13 @@ These query names are optional and are used to filter the file contents based on
 | 1     | start-line    | Start of the line         |
 | 2     | end-line      | End of the line        |
 
+<br>
+<h4>Example:</h4>
+<br>
+
+```
+http://127.0.0.1:5000/file3?start-line=10&end-line=20
+```
 
 <hr>
 
